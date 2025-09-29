@@ -166,6 +166,11 @@ platform_do_upgrade() {
 		fw_setenv upgrade_available 1
 		nand_do_upgrade "$1"
 		;;
+	linksys,homewrk)
+		CI_UBIPART="rootfs"
+		remove_oem_ubi_volume ubi_rootfs
+		nand_do_upgrade "$1"
+		;;
 	linksys,mx4200v1|\
 	linksys,mx4200v2|\
 	linksys,mx4300|\
@@ -210,7 +215,8 @@ platform_do_upgrade() {
 		nand_do_upgrade "$1"
 		;;
 	redmi,ax6-stock|\
-	xiaomi,ax3600-stock)
+	xiaomi,ax3600-stock|\
+	xiaomi,ax9000-stock)
 		part_num="$(fw_printenv -n flag_boot_rootfs)"
 		if [ "$part_num" -eq "1" ]; then
 			CI_UBIPART="rootfs_1"

@@ -156,6 +156,21 @@ define Device/edimax_cax1800
 endef
 TARGET_DEVICES += edimax_cax1800
 
+define Device/linksys_homewrk
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := Linksys
+	DEVICE_MODEL := HomeWRK
+	DEVICE_DTS_CONFIG := config@oak03
+	BLOCKSIZE := 256k
+	PAGESIZE := 4096
+	IMAGE_SIZE := 475m
+	NAND_SIZE := 1024m
+	SOC := ipq8174
+	DEVICE_PACKAGES += kmod-leds-pca963x ipq-wifi-linksys_homewrk
+endef
+TARGET_DEVICES += linksys_homewrk
+
 define Device/linksys_mx
 	$(call Device/FitImage)
 	DEVICE_VENDOR := Linksys
@@ -437,6 +452,17 @@ ifneq ($(CONFIG_TARGET_ROOTFS_INITRAMFS),)
 endif
 endef
 TARGET_DEVICES += xiaomi_ax9000
+
+define Device/xiaomi_ax9000-stock
+	$(call Device/xiaomi_ax9000)
+	DEVICE_VARIANT := (stock layout)
+	DEVICE_ALT0_VENDOR := Xiaomi
+	DEVICE_ALT0_MODEL := AX9000
+	DEVICE_ALT0_VARIANT := (custom U-Boot layout)
+	KERNEL_SIZE :=
+	ARTIFACTS :=
+endef
+TARGET_DEVICES += xiaomi_ax9000-stock
 
 define Device/yuncore_ax880
 	$(call Device/FitImage)
