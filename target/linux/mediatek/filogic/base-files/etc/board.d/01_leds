@@ -79,10 +79,10 @@ iptime,ax3000sm)
 	ucidef_set_led_netdev "wan" "wan" "amber:wan" "eth1" "link tx rx"
 	;;
 mediatek,7981r128)
-	ucidef_set_led_netdev "wan" "WAN" "green:wan" "eth1"
-	ucidef_set_led_netdev "lan2" "LAN" "green:lan" "lan2"
-	ucidef_set_led_netdev "wlan2g" "WLAN2G" "green:wlan-2ghz" "phy0-ap0"
-	ucidef_set_led_netdev "wlan5g" "WLAN5G" "green:wlan-5ghz" "phy1-ap0"
+	ucidef_set_led_netdev "lan" "LAN" "LAN" "lan2"
+	ucidef_set_led_netdev "sfp" "SFP" "SFP" "eth1" "link"
+	ucidef_set_led_netdev "wifi5g" "WIFI5G" "WIFI5G" "rax0" "tx rx"
+	ucidef_set_led_netdev "wifi2g" "WIFI2G" "WIFI2G" "ra0" "tx rx"
 	;;
 mercusys,mr80x-v3)
 	ucidef_set_led_netdev "lan1" "lan-1" "green:lan-1" "lan1" "link tx rx"
