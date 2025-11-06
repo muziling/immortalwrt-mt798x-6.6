@@ -1963,7 +1963,7 @@ static unsigned int skb_to_hnat_info(struct sk_buff *skb,
 			if (FROM_EXT(skb) || skb_hnat_sport(skb) == NR_QDMA_PORT)
 				entry.ipv4_hnapt.iblk2.fqos = 0;
 			else
-				entry.ipv4_hnapt.iblk2.fqos = 1 ;
+				entry.ipv4_hnapt.iblk2.fqos = (qid != 0) ? 1 : 0;
 		} else {
 			entry.ipv4_hnapt.iblk2.fqos = 0;
 		}
@@ -1994,7 +1994,7 @@ static unsigned int skb_to_hnat_info(struct sk_buff *skb,
 			if (FROM_EXT(skb))
 				entry.ipv6_5t_route.iblk2.fqos = 0;
 			else
-				entry.ipv6_5t_route.iblk2.fqos = 1;
+				entry.ipv6_5t_route.iblk2.fqos = (qid != 0) ? 1 : 0;
 		} else {
 			entry.ipv6_5t_route.iblk2.fqos = 0;
 		}
