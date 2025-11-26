@@ -338,7 +338,6 @@ static void gmac_ppe_fwd_enable(struct net_device *dev)
 
 void ppd_dev_setting(void)
 {
-	int is_dsa = 0;
 	br_dev = __dev_get_by_name(&init_net, "br-lan");
 	eth1_dev = __dev_get_by_name(&init_net, "eth1");
         hnat_priv->g_ppdev = __dev_get_by_name(&init_net, "eth0");
@@ -352,9 +351,6 @@ void ppd_dev_setting(void)
 					ppd_dev = __dev_get_by_name(&init_net, dev->name);
                                 	if ((strcmp(dev->name, "eth0") == 0))     
 						{break;}
-					if (strncmp(dev->name, "lan", 3) == 0)     
-						{
-						is_dsa =1;											break;}
 					if ((strcmp(dev->name, "eth1") == 0))     
 						{break;}
 				}
@@ -374,22 +370,7 @@ void ppd_dev_setting(void)
 		if (netif_carrier_ok(br_dev))
                 hnat_priv->g_ppdev = __dev_get_by_name(&init_net, "eth0");
                 }
-	}
-	if(is_dsa)
-	{
-	if (br_dev && eth1_dev) {
-		struct net_device *dev;
-		struct list_head *pos;
-		netdev_for_each_lower_dev(br_dev, dev, pos) {
-			if (dev == eth1_dev) {
-				hnat_priv->g_ppdev = __dev_get_by_name(&init_net, "eth1");
-				ppd_dev = __dev_get_by_name(&init_net, "eth1");	
-				break;
-				}
-			}
-		}
-	}
-	
+	}	
 	pr_info("%s : now rx dev: %s, tx dev: %s\n", 
 		__func__, hnat_priv->g_ppdev->name, ppd_dev->name);
 }
