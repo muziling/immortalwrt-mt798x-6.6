@@ -1002,7 +1002,7 @@ static unsigned int do_hnat_cpu_to_ge(struct sk_buff *skb)
 	skb_hnat_filled(skb) = 0;
 
 	if (unlikely(!is_ppe_support_type(skb))) {
-                skb_hnat_alg(skb) = 0;
+                skb_hnat_alg(skb) = 1;
                 return -1;
         }
         if (hnat_priv->g_ppdev && hnat_priv->g_ppdev->flags & IFF_UP) {
