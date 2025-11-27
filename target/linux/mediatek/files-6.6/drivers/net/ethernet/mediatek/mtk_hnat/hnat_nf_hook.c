@@ -2666,7 +2666,8 @@ mtk_hnat_br_nf_local_out(void *priv, struct sk_buff *skb,
 
 	post_routing_print(skb, state->in, state->out, __func__);
 
-	if ((!strncmp(state->out->name, "ra",2)&& !is_from_extge(skb))){
+	if ((!strncmp(state->out->name, "ra",2)) && !is_from_extge(skb) && !( FROM_GE_PPD(skb) || FROM_GE_LAN(skb) ||
+		   FROM_GE_WAN(skb) || FROM_WED(skb) || FROM_EXT(skb))){
 		if (!do_hnat_cpu_to_ge(skb))
               		return NF_STOLEN;	
         }
